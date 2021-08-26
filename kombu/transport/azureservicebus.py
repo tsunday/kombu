@@ -375,9 +375,8 @@ class Channel(virtual.Channel):
 
     @cached_property
     def peek_lock_seconds(self) -> int:
-        return min(self.transport_options.get('peek_lock_seconds',
-                                              self.default_peek_lock_seconds),
-                   300)  # Limit upper bounds to 300
+        return self.transport_options.get('peek_lock_seconds',
+                                          self.default_peek_lock_seconds)
 
     @cached_property
     def uamqp_keep_alive_interval(self) -> int:
